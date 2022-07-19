@@ -1,7 +1,7 @@
 import React from "react";
 import {useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import {axiosInstance} from '../../config'
 
 import StudentDoubts from "./StudentDoubts";
 
@@ -31,8 +31,8 @@ function Student({userName,setLoginUser}) {
 
   async function handleAsk(e) {
     e.preventDefault();
-    await axios
-      .post("http://localhost:8080/doubts", question)
+    await axiosInstance
+      .post("/doubts", question)
       .then((response) => {
         alert(response.data.message)
         // navigate("/class")

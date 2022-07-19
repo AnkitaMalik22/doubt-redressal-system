@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+// import axios from "axios";
+import { Link } from "react-router-dom";
+import {axiosInstance} from '../../config'
 
 function Create({userEmail,userName}) {
   const [display, setDisplay] = useState(false)
@@ -13,7 +14,7 @@ function Create({userEmail,userName}) {
        className: "",
       
       });
-      const navigate = useNavigate();
+      // const navigate = useNavigate();
       const handleChange = e => {
         const { name, value } = e.target
         setUser({
@@ -24,7 +25,7 @@ function Create({userEmail,userName}) {
     async function handleSubmit(e) {
         e.preventDefault()
     
-         await axios.post('http://localhost:8080/class/create',user)
+         await axiosInstance.post('/class/create',user)
            .then((response)=>{
             setDisplay(true) 
           setId(response.data._id)

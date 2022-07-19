@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import {axiosInstance} from '../config'
 import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
@@ -28,13 +28,8 @@ function Register() {
 
 async function handleSubmit(e) {
   e.preventDefault()
-  // console.log('====================================');
-  // console.log(user);
-  // console.log('====================================');
-  // if(data.title==="" || data.snippet==="" || data.body===""){
-  //   handleValidation()
-  // }
-   await axios.post('http://localhost:8080/register',user)
+ 
+   await axiosInstance.post('/register',user)
      .then((response)=>{ 
       // alert(response.data.message)
       if(response.data.message !== "registered"){ navigate('/login')}

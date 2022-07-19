@@ -3,7 +3,7 @@ import React from 'react'
 import { useState ,useEffect} from "react";
 import {useParams} from "react-router-dom";
 import {useNavigate } from "react-router-dom";
-import axios from "axios";
+import {axiosInstance} from '../../config'
 
 function TeacherDoubts({user}) {
     let { doubtId } = useParams();
@@ -27,8 +27,8 @@ const handleChange = (e) => {
 
   async function handleGetDoubt(id) {
     // console.log(comment,id)
-     await axios
-       .get(`http://localhost:8080/doubts/${id}`,data)
+     await axiosInstance
+       .get(`/doubts/${id}`,data)
        .then((response) => {
      setData(response.data)
        })
@@ -40,8 +40,8 @@ const handleChange = (e) => {
 
   async function handleAddAnswer(id) {
     // console.log(comment,id)
-     await axios
-       .post(`http://localhost:8080/doubts/add-answer/${id}`, {answer:answer})
+     await axiosInstance
+       .post(`/doubts/add-answer/${id}`, {answer:answer})
        .then((response) => {
 
       navigate("/class")

@@ -2,7 +2,7 @@ import React from "react";
 
 import { useState ,useEffect} from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import {axiosInstance} from '../../config'
 import {useNavigate } from "react-router-dom";
 
 
@@ -21,8 +21,8 @@ function Teacher({user}) {
   async function handleAllDoubts() {
 
 
-    await axios
-      .get("http://localhost:8080/doubts/all-doubts", allDoubts)
+    await axiosInstance
+      .get("/doubts/all-doubts", allDoubts)
       .then((response) => {
     setAllDoubts(response.data)
    

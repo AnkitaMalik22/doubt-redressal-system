@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import {axiosInstance} from '../../config'
+import {  useNavigate } from "react-router-dom";
 
 function Join({setUserType,userEmail}) {
    console.log(userEmail)
@@ -22,7 +22,7 @@ function Join({setUserType,userEmail}) {
     async function handleSubmit(e) {
         e.preventDefault()
     
-         await axios.post('http://localhost:8080/class/join',user)
+         await axiosInstance.post('/class/join',user)
            .then((response)=>{ 
             alert("Join Successfull")
             setUserType(response.data.type)

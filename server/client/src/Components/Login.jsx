@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import {axiosInstance} from '../config'
 import { Link, useNavigate } from "react-router-dom";
 
 function Signup({setLoginUser}) {
@@ -26,25 +26,12 @@ function Signup({setLoginUser}) {
     })
 }
 
-// const handleSubmit=async(e)=>{
-//   e.preventDefault();
-//   try{
-//     const url ='http://localhost:8080/api/auth';
-//     const { data : res } = await axios.post(url,data)
-// localStorage.setItem("token",res.data)
-// window.location("/")
 
-//   }catch(error){
-//     if(error.response && error.response.status >=400 && error.response.status <=500){
-//       setError(error.response.data.message)
-//     }
-//   }
-// }
 
 async function handleSubmit() {
   // e.preventDefault()
     
-    await axios.post('http://localhost:8080/login',user)
+    await axiosInstance.post('/login',user)
     .then((response)=>{ 
      // alert(response.data.message)
      if(response.data.message == "Login Successfull"){  

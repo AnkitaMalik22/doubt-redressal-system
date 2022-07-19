@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState ,useEffect} from "react";
-import axios from "axios";
+import {axiosInstance} from '../../config'
 // import { Link, useNavigate } from "react-router-dom";
 
 function StudentDoubts() {
@@ -25,8 +25,8 @@ const handleChange = (e) => {
 
     async function handleAllDoubts() {
         
-        await axios
-          .get("http://localhost:8080/doubts/all-doubts", allDoubts)
+        await axiosInstance
+          .get("/doubts/all-doubts", allDoubts)
           .then((response) => {
         setAllDoubts(response.data)
         // setALlComments(response.data.comments)
@@ -40,8 +40,8 @@ const handleChange = (e) => {
 
       async function handleAddComment(id) {
        console.log(comment,id)
-        await axios
-          .post(`http://localhost:8080/doubts/add-comment/${id}`, {comment:comment})
+        await axiosInstance
+          .post(`/doubts/add-comment/${id}`, {comment:comment})
           .then((response) => {
         alert("commented")
           })
